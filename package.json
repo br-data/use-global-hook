@@ -8,7 +8,10 @@
     "build": "cross-env NODE_ENV=production rollup -c ./rollup.config.js",
     "prebuild": "yarn install --prefer-offline --frozen-lockfile && rimraf build",
     "postbuild": "node ./copy-files.js",
-    "publish:package": "npm version patch --no-git-tag-version --no-commit-hooks && npm publish"
+    "publishRelease": "git add . && git push --tags && git push && yarn run prebuild && yarn build && yarn run postbuild && git commit -m \":rocket: Add release files\" && git push",
+    "release:major": "npm version major -m \"Release: %s\" && yarn run publishRelease",
+    "release:minor": "npm version minor -m \"Release: %s\" && yarn run publishRelease",
+    "release:patch": "npm version patch -m \"Release: %s\" && yarn run publishRelease"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
@@ -34,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/use-global-hook/use-global-hook.git"
+    "url": "git@github.com:br-data/use-global-hook.git"
   },
   "bugs": {
     "url": "https://github.com/use-global-hook/use-global-hook/issues"
