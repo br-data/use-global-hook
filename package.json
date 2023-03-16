@@ -4,6 +4,8 @@
   "name": "use-global-hook",
   "license": "MIT",
   "private": true,
+  "main": "./build/cjs/index.js",
+  "module": "./build/esm/index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production rollup -c ./rollup.config.js",
     "prebuild": "yarn install --prefer-offline --frozen-lockfile && rimraf build",
