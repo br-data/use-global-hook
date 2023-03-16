@@ -5,7 +5,7 @@ export const newListenerEffect = (store, oldState, mapState, originalHook) => {
   newListener.run = mapState
     ? (newState) => {
         const mappedState = mapState(newState);
-        if (mappedState !== newListener.oldState) {
+        if (JSON.stringify(mappedState) !== JSON.stringify(newListener.oldState)) {
           newListener.oldState = mappedState;
           originalHook(newState);
         }
